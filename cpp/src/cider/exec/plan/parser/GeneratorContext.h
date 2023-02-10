@@ -93,7 +93,7 @@ struct GeneratorContext {
     std::vector<std::shared_ptr<Analyzer::Expr>> shared_target_exprs;
     for (auto target_expr : target_exprs_) {
       // TODO: Memleak here, remove it after nextgen ready.
-      target_exprs.emplace_back(getExpr(target_expr, is_partial_avg_));
+      // target_exprs.emplace_back(getExpr(target_expr, is_partial_avg_));
       shared_target_exprs.emplace_back(target_expr);
     }
     std::list<std::shared_ptr<Analyzer::Expr>> groupby_exprs;

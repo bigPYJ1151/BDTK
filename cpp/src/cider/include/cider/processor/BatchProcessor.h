@@ -47,6 +47,8 @@ class BatchProcessor : public std::enable_shared_from_this<BatchProcessor> {
     kStateful,
   };
 
+  virtual ~BatchProcessor() = default;
+
   virtual const BatchProcessorContextPtr& getContext() const = 0;
   /// Adds an input batch to the batchProcessor.  This method will only be called if
   /// getState return kRunning.

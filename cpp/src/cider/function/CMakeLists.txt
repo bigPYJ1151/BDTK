@@ -83,7 +83,5 @@ add_custom_command(
 
 add_library(cider_function ${function_source_files})
 
-if(NOT LIBSUBSTRAITCPP_INCLUDE_DIR OR NOT LIBSUBSTRAITCPP_LIB)
-  add_dependencies(cider_function SUBSTRAITCPP)
-endif()
+add_dependencies(cider_function SUBSTRAITCPP)
 target_link_libraries(cider_function ${SUBSTRAITCPP_LIB} re2)

@@ -41,6 +41,8 @@ class DataProvider {
       const size_t num_bytes,
       const size_t num_elems) = 0;
 
+  virtual ~DataProvider() = default;
+
   virtual Fragmenter_Namespace::TableInfo getTableMetadata(int db_id,
                                                            int table_id) const = 0;
 

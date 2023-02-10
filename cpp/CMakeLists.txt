@@ -98,7 +98,7 @@ if(BDTK_ENABLE_CIDER)
   endif()
 
   if(CIDER_ENABLE_BENCHMARK OR ENABLE_BENCHMARK)
-    set(CMAKE_CXX_FLAGS "-g -ggdb -fno-omit-frame-pointer")
+    # set(CMAKE_CXX_FLAGS "-g -ggdb -fno-omit-frame-pointer")
   endif()
 
   if(CIDER_ENABLE_BENCHMARK)

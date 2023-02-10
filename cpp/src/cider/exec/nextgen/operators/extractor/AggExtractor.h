@@ -33,6 +33,8 @@ class NextgenAggExtractor {
  public:
   explicit NextgenAggExtractor(const std::string& name) : name_(name) {}
 
+  virtual ~NextgenAggExtractor() = default;
+
   virtual void extract(const std::vector<const int8_t*>&, ArrowArray*) = 0;
 
   std::string getName() { return name_; }

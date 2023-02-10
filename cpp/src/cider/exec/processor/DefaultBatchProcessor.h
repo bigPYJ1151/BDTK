@@ -36,7 +36,7 @@ class DefaultBatchProcessor : public BatchProcessor {
       const BatchProcessorContextPtr& context,
       const cider::exec::nextgen::context::CodegenOptions& codegen_options = {});
 
-  virtual ~DefaultBatchProcessor() = default;
+   ~DefaultBatchProcessor() override = default;
 
   const BatchProcessorContextPtr& getContext() const override { return context_; }
 

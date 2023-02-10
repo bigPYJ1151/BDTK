@@ -179,7 +179,7 @@ def tidy_command(commit, files, fix):
 
 def get_commit(files):
     if files == "commit":
-        return util.run("git merge-base upstream/main HEAD")[1]
+        return util.run("git merge-base origin/main HEAD")[1]
 
     if files == "branch":
         return os.environ["BASE_COMMIT"]

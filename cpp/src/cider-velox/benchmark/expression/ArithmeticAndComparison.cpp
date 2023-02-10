@@ -100,7 +100,7 @@ void releaseArrowArray(ArrowArray* array) {
   free((void*)array->buffers[0]);
   free((void*)array->buffers[1]);
   free((void*)array->buffers);
-  free(array);
+  delete array;
 }
 
 class ArithmeticAndComparisonBenchmark : public functions::test::FunctionBenchmarkBase {
@@ -208,6 +208,7 @@ class ArithmeticAndComparisonBenchmark : public functions::test::FunctionBenchma
     auto plan = v2SPlanConvertor->toSubstrait(arena, veloxPlan);
 
     cgo.co.dump_ir = FLAGS_dump_ir;
+    cgo.enable_vectorize = true;
     cgo.co.enable_vectorize = true;
     cgo.co.enable_avx2 = true;
     cgo.co.enable_avx512 = true;
@@ -390,7 +391,7 @@ BENCHMARK(nextgen____base) {
 }
 BENCHMARK_RELATIVE(nextgen_opt) {
   // null separate
-  FLAGS_null_separate = true;
+  FLAGS_null_separate = false;
   CodegenOptions cgo;
   benchmark->nextgenCompute(profile_expr, cgo);
   FLAGS_null_separate = false;
@@ -421,13 +422,13 @@ BENCHMARK_DRAW_LINE();
     benchmark->nextgenCompute(expr, cgo);                                  \
   }                                                                        \
   BENCHMARK_RELATIVE(name##NextgenNullSeparate) {                          \
-    FLAGS_null_separate = true;                                            \
+    FLAGS_null_separate = false;                                            \
     CodegenOptions cgo;                                                    \
     benchmark->nextgenCompute(expr, cgo);                                  \
     FLAGS_null_separate = false;                                           \
   }                                                                        \
   BENCHMARK_RELATIVE(name##NextgenAllOpt) {                                \
-    FLAGS_null_separate = true;                                            \
+    FLAGS_null_separate = false;                                            \
     CodegenOptions cgo;                                                    \
     cgo.check_bit_vector_clear_opt = true;                                 \
     cgo.set_null_bit_vector_opt = true;                                    \
